@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.annotation.RequestScope;
 
-@Controller
+@Controller//默认在static中找模板
 @RequestMapping("/pk/")
 public class IndexController {
 

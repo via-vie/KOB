@@ -1,30 +1,42 @@
+//每一个vue文件都是三个标签
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+	<div>Bot昵称：{{bot_name}}</div><!--通过后端取得-->
+	<div>Bot战力：{{bot_rating}}</div>
   </div>
-  <router-view/>
-</template>
+  <router-view></router-view>
+</template>//html
+
+<script>//固定写法
+import $ from 'jquery'
+import {ref} from 'vue';
+
+export default{
+	name: "App",
+	setup : ()=>{
+		let bot_name = ref("");
+		let bot_rating = ref("");
+		
+		$.ajax({
+			url:"http://127.0.0.1:3000/pk/getbotinfo/",
+			type: "get",//获取数据
+			success: resp=>{
+				bot_name.value = resp.name;
+				bot_rating.value = resp.rating;
+			}
+		})
+		
+		return{
+			bot_name,
+			bot_rating
+		}
+	}//函数的入口
+}
+</script><!--//js-->
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+	body{/*@表示当前文件的根目录。~类似相对路径*/
+		background-image:url("~@/assets/bg.png");
+		background-size:cover;
+	}
+</style><!--//css-->

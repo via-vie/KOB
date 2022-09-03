@@ -8,22 +8,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@RestController//默认返回数据
 @RequestMapping("/pk/")
 public class BotInfoCotroller {
 
     @RequestMapping("getbotinfo/")
-    public List<Map<String,String>> getBotInfo(){
-        List<Map<String,String>> list = new LinkedList<>();
+    public Map<String,String>getBotInfo(){
         Map<String,String> bot1= new HashMap<>();
         bot1.put("name","tiger");
         bot1.put("rating","1800");
-        Map<String,String> bot2 = new HashMap<>();
-        bot2.put("name","apple");
-        bot2.put("rating","1500");
-        list.add(bot1);
-        list.add(bot2);
-        return list;//前后端分离，返回的是函数值而不是页面
+        return bot1;//前后端分离，返回的是函数值而不是页面
 
 
     }
